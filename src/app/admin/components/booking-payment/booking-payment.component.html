@@ -1,25 +1,19 @@
 <mat-card class="payment-card mat-elevation-z8">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Cofirm Booking</mat-card-title>
+  <mat-card-header class="card-header">
+    <mat-card-title class="card-title">Confirm Booking</mat-card-title>
   </mat-card-header>
-  <mat-card-content>
-    <mat-label> From: {{data?.eventDto.fromDestination}}</mat-label>
-    <br>
-    <mat-label> To: {{data?.eventDto.toDestination}}</mat-label>
-    <br>
-    <mat-label> Departure Date and Time: <strong>{{data?.eventDto.departureDate  |date:'short'}}</strong></mat-label>
-    <br>
-    <mat-label> Name :{{data?.reservationDto.name }}</mat-label>
-    <br>
-    <mat-label> Phone Number:{{data?.reservationDto.phoneNumber }}</mat-label>
-    <br>
-    <mat-label> Email:{{data?.reservationDto.email}}</mat-label>
-    <br>
-    <mat-label> Total Tickets:{{data?.reservationDto.ticketQuantity }}</mat-label>
-    <br>
-    <mat-label> Total Cost:{{data?.reservationDto.totalCost }}</mat-label>
-    <br>
+  <mat-card-content class="card-content">
+    <div class="card-label">
+      From: {{data?.eventDto.fromDestination}}
+    </div>
+    <div class="card-label"> To: {{data?.eventDto.toDestination}}</div>
+    <div class="card-label"> Departure Date and Time:
+      <strong>{{data?.eventDto.departureDate  |date:'short'}}</strong></div>
+    <div class="card-label"> Name :{{data?.reservationDto.name }}</div>
+    <div class="card-label"> Phone Number:{{data?.reservationDto.phoneNumber }}</div>
+    <div class="card-label"> Email:{{data?.reservationDto.email}}</div>
+    <div class="card-label"> Total Tickets:{{data?.reservationDto.ticketQuantity }}</div>
+    <div class="card-label"> Total Cost:{{data?.reservationDto.totalCost }}</div>
     <form [formGroup]="paymentForm">
       <mat-form-field class="field-full-width">
         <mat-label>Select Event Type</mat-label>
@@ -27,11 +21,14 @@
           <mat-option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod">
             {{paymentMethod.paymentMethod}}
           </mat-option>
+          <mat-error *ngIf="paymentMethodFormControl.hasError('required')">
+            Total ticket is <strong>required</strong>
+          </mat-error>
         </mat-select>
       </mat-form-field>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button (click)="confirm()">Cofirm</button>
+    <button mat-button class="book-btn" color="primary" [disabled]="!paymentForm.valid" (click)="confirm()">Confirm</button>
   </mat-card-actions>
 </mat-card>

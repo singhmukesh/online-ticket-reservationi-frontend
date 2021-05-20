@@ -29,6 +29,10 @@ export class PaymentService {
     return this.http.get(this.PAYMENT_URL + '/' + id);
   }
 
+  getNavItems(): Observable<any> {
+    return this.http.get(this.PAYMENT_URL + '/navItems');
+  }
+
   deleteById(id): Observable<any> {
     return this.http.delete(this.PAYMENT_URL + '/' + id);
   }

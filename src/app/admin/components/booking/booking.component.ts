@@ -97,7 +97,7 @@ export class BookingComponent implements OnInit {
     rawValue.eventId = this.eventId;
     this.bookingService.save(rawValue).subscribe(
       res => {
-        this.router.navigate(['pay',res.id]);
+        this.router.navigate(['user/pay',res.id]);
       },
       error => {
         this.snackBar.open(error.message);

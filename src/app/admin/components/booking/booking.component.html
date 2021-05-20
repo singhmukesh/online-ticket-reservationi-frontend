@@ -1,61 +1,68 @@
-<form [formGroup]="bookingForm">
+<div class="booking-container">
+  <div class="dialog-title" mat-dialog-title>
+    <h2>Booking Details</h2>
+  </div>
+  <form [formGroup]="bookingForm" class="booking-form">
+    <mat-divider></mat-divider>
+    <mat-form-field class="field-full-width">
+      <mat-label>Full Name</mat-label>
+      <input formControlName="name" matInput placeholder="Full Name">
+      <mat-error *ngIf="nameFormControl.hasError('required')">
+        Name is required <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="field-full-width">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput placeholder="Email">
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is required <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="field-full-width">
+      <mat-label>Phone Number</mat-label>
+      <input formControlName="phoneNumber" matInput placeholder="Phone Number">
+      <mat-error *ngIf="phoneNumberFormControl.hasError('required')">
+        Phone number is required <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="field-full-width">
+      <mat-label>Select Event Type</mat-label>
+      <mat-select formControlName="eventType">
+        <mat-option *ngFor="let eventType of getKeys(eventTypes)" [value]="eventType">
+          {{eventTypes[eventType]}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="field-full-width">
+      <mat-label>Unit price</mat-label>
+      <input formControlName="unitCost" matInput placeholder="Phone Number" readonly>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="field-full-width">
+      <mat-label>Ticket Quantity</mat-label>
+      <input formControlName="ticketQuantity" matInput placeholder="Ticket Quantity" (keyup)="ticketInput($event)">
+      <mat-error *ngIf="ticketQuantityFormControl.hasError('required')">
+        Ticket Quantity is required <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="bookingForm.get('ticketQuantity').hasError('ticketRange')">
+        Ticket Quantity is greater than available tickets.
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="field-full-width">
+      <mat-label>Total Cost</mat-label>
+      <input formControlName="totalCost" matInput readonly>
+    </mat-form-field>
+    <br>
+  </form>
   <mat-divider></mat-divider>
-  <mat-form-field class="field-full-width">
-    <mat-label>Full Name</mat-label>
-    <input formControlName="name" matInput placeholder="Full Name">
-    <mat-error *ngIf="nameFormControl.hasError('required')">
-      Name is required <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <br>
-  <mat-form-field class="field-full-width">
-    <mat-label>Email</mat-label>
-    <input formControlName="email" matInput placeholder="Email">
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Email is required <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <br>
-  <mat-form-field class="field-full-width">
-    <mat-label>Phone Number</mat-label>
-    <input formControlName="phoneNumber" matInput placeholder="Phone Number">
-    <mat-error *ngIf="phoneNumberFormControl.hasError('required')">
-      Phone number is required <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="field-full-width">
-    <mat-label>Select Event Type</mat-label>
-    <mat-select formControlName="eventType">
-      <mat-option *ngFor="let eventType of getKeys(eventTypes)" [value]="eventType">
-        {{eventTypes[eventType]}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br>
-  <mat-form-field class="field-full-width">
-    <mat-label>Unit price</mat-label>
-    <input formControlName="unitCost" matInput placeholder="Phone Number" readonly>
-  </mat-form-field>
-  <br>
-  <mat-form-field class="field-full-width">
-    <mat-label>Ticket Quantity</mat-label>
-    <input formControlName="ticketQuantity" matInput placeholder="Ticket Quantity" (keyup)="ticketInput($event)">
-    <mat-error *ngIf="ticketQuantityFormControl.hasError('required')">
-      Ticket Quantity is required <strong>required</strong>
-    </mat-error>
-    <mat-error *ngIf="bookingForm.get('ticketQuantity').hasError('ticketRange')">
-      Ticket Quantity is greater than available tickets.
-    </mat-error>
-  </mat-form-field>
-  <br>
-  <mat-form-field class="field-full-width">
-    <mat-label>Total Cost</mat-label>
-    <input formControlName="totalCost" matInput readonly>
-  </mat-form-field>
-  <br>
-</form>
-<mat-divider></mat-divider>
-<button mat-button color="primary" [disabled]="!bookingForm.valid" class="book-btn" (click)="saveBookingData()">Next</button>
-
+  <div class="book-button">
+    <button mat-button color="primary" [disabled]="!bookingForm.valid" class="book-btn" (click)="saveBookingData()">Next
+    </button>
+  </div>
+</div>
 
 
