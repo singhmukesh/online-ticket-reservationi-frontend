@@ -79,8 +79,7 @@ export class BookingComponent implements OnInit {
   }
 
   ticketInput(event: KeyboardEvent) {
-    // const quantity = +event.target.value;
-    const quantity = 12;
+    const quantity = +(<HTMLInputElement>event.target).value;
     const totalCost = quantity * this.unitTicketCost;
     this.bookingForm.get('totalCost').setValue(totalCost);
   }
@@ -97,7 +96,7 @@ export class BookingComponent implements OnInit {
     rawValue.eventId = this.eventId;
     this.bookingService.save(rawValue).subscribe(
       res => {
-        this.router.navigate(['user/pay',res.id]);
+        this.router.navigate(['user/pay', res.id]);
       },
       error => {
         this.snackBar.open(error.message);

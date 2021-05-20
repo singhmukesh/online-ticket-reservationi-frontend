@@ -82,14 +82,12 @@ export class AddEditEventComponent implements OnInit {
       "numberOfTickets": this.totalTicketsFormControl.value,
       "cost": this.unitCostFormControl.value
     }
-    this.eventService.save(rawValue).subscribe(
-      res => {
+    this.eventService.save(rawValue).subscribe(res => {
         this.snackBar.open(res.message);
       },
       error => {
         this.snackBar.open(error.message);
-      }
-    );
+      });
   }
 
   updateData() {

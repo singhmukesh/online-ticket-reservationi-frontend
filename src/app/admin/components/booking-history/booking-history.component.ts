@@ -1,4 +1,5 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {EventType} from "../event/enum/EventType";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
@@ -6,18 +7,18 @@ import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {merge} from "rxjs";
 import {catchError, map, startWith, switchMap} from "rxjs/operators";
-import {EventType} from "../event/enum/EventType";
-import {EventService} from "../event/event.service";
+import {ReservationService} from "../reservation/reservation.service";
 
 @Component({
-  selector: 'app-reservation',
-  templateUrl: './reservation.component.html',
-  styleUrls: ['./reservation.component.scss']
+  selector: 'app-booking-history',
+  templateUrl: './booking-history.component.html',
+  styleUrls: ['./booking-history.component.scss']
 })
-export class ReservationComponent implements AfterViewInit {
+export class BookingHistoryComponent implements AfterViewInit{
+
   eventType = EventType;
   event: Event[] = [];
-  displayedColumns: string[] = ['id', 'fromDestination', 'toDestination', 'eventType', 'cost', 'totalAvailableTickets', 'departureDate','actions'];
+  displayedColumns: string[] = ['fromDestination', 'toDestination', 'eventType', 'cost','departureDate'];
 
   dataSource: MatTableDataSource<Event> = new MatTableDataSource();
   resultsLength = 0;
@@ -27,7 +28,7 @@ export class ReservationComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dialog: MatDialog, private eventService: EventService, private cdRef: ChangeDetectorRef, private snackBar: MatSnackBar) {
+  constructor(private dialog: MatDialog, private reservationService: ReservationService, private cdRef: ChangeDetectorRef, private snackBar: MatSnackBar) {
   }
 
   ngAfterViewInit(): void {
@@ -42,14 +43,14 @@ export class ReservationComponent implements AfterViewInit {
         switchMap(() => {
           this.isLoadingResults = true;
           this.cdRef.detectChanges();
-          return this.eventService.fetchPage(this.sort.active, this.sort.direction,
+          return this.reservationService.fetchPage(this.sort.active, this.sort.direction,
             this.paginator.pageIndex, this.paginator.pageSize);
         }),
         map((data: any) => {
           this.isLoadingResults = false;
           this.resultsLength = data.total;
           this.cdRef.detectChanges();
-          return data.eventDtos;
+          return data.bookingInfoDtos;
         }),
         catchError((err) => {
           this.isLoadingResults = false;

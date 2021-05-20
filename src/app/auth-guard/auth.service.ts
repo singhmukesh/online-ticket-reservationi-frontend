@@ -28,7 +28,7 @@ export class AuthService {
     return this.http.post(access_token_url, user, this.httpOptions);
   }
 
-  getUserDetails() {
-    return this.http.get(this.USER_URL);
+  getUserRoles() {
+    return this.http.get(this.USER_URL + "/roles");
   }
 }

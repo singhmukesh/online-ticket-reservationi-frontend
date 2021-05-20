@@ -43,6 +43,9 @@ export class LoginPageComponent implements OnInit {
     this.authService.login(data).subscribe(
       res => {
         this.tokenStorage.saveToken(res.access_token);
+        this.authService.getUserRoles().subscribe(res => {
+          this.tokenStorage.route(res);
+        });
       },
       err => {
         console.log(err)

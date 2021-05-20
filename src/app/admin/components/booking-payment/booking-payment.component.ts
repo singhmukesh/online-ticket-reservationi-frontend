@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BookingService} from "../booking/bookin.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
@@ -16,7 +16,7 @@ export class BookingPaymentComponent implements OnInit {
   paymentMethodFormControl: FormControl;
   paymentForm: FormGroup;
 
-  constructor(private bookingService: BookingService, private route: ActivatedRoute, private snackBar: MatSnackBar) {
+  constructor(private bookingService: BookingService, private route: ActivatedRoute, private snackBar: MatSnackBar, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -33,10 +33,6 @@ export class BookingPaymentComponent implements OnInit {
     this.reservationId = +this.route.snapshot.paramMap.get('id');
     this.bookingService.getReservationInfo(this.reservationId).subscribe(res => {
       this.data = res;
-      console.log(res);
-      /*  this.bookingForm.patchValue({
-          unitCost: res.ticketDto.cost
-        });*/
     });
   }
 
@@ -47,6 +43,7 @@ export class BookingPaymentComponent implements OnInit {
     this.bookingService.pay(rawValue).subscribe(
       res => {
         this.snackBar.open(res.message);
+        this.router.navigate(['user/history']);
       },
       error => {
         this.snackBar.open(error.message);
@@ -57,7 +54,6 @@ export class BookingPaymentComponent implements OnInit {
   getPaymentMethods() {
     this.bookingService.getPaymentMethods().subscribe(res => {
       this.paymentMethods = res;
-      console.log(this.paymentMethods);
     })
   }
 }

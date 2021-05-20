@@ -40,6 +40,11 @@ import {MatDatetimepickerModule} from "@mat-datetimepicker/core";
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { BookingPaymentComponent } from './components/booking-payment/booking-payment.component';
+import { BookingHistoryComponent } from './components/booking-history/booking-history.component';
+import { OverallReservationComponent } from './components/overall-reservation/overall-reservation.component';
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import { BarGraphComponent } from './components/dashboard/bar-graph/bar-graph.component';
+import { PieChartComponent } from './components/dashboard/pie-chart/pie-chart.component';
 
 
 @NgModule({
@@ -54,7 +59,12 @@ import { BookingPaymentComponent } from './components/booking-payment/booking-pa
     AddEditCurrencyComponent,
     ReservationComponent,
     BookingComponent,
-    BookingPaymentComponent
+    BookingPaymentComponent,
+    BookingHistoryComponent,
+    OverallReservationComponent,
+    DashboardComponent,
+    BarGraphComponent,
+    PieChartComponent
   ],
   imports: [
     CommonModule,

@@ -1,23 +1,22 @@
 import {AfterViewInit, ChangeDetectorRef, Component, ViewChild} from '@angular/core';
+import {EventType} from "../event/enum/EventType";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatDialog} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {ReservationService} from "../reservation/reservation.service";
 import {merge} from "rxjs";
 import {catchError, map, startWith, switchMap} from "rxjs/operators";
-import {EventType} from "../event/enum/EventType";
-import {EventService} from "../event/event.service";
 
 @Component({
-  selector: 'app-reservation',
-  templateUrl: './reservation.component.html',
-  styleUrls: ['./reservation.component.scss']
+  selector: 'app-overall-reservation',
+  templateUrl: './overall-reservation.component.html',
+  styleUrls: ['./overall-reservation.component.scss']
 })
-export class ReservationComponent implements AfterViewInit {
+export class OverallReservationComponent implements AfterViewInit {
   eventType = EventType;
   event: Event[] = [];
-  displayedColumns: string[] = ['id', 'fromDestination', 'toDestination', 'eventType', 'cost', 'totalAvailableTickets', 'departureDate','actions'];
+  displayedColumns: string[] = ['name','email','phoneNumber','fromDestination', 'toDestination', 'eventType', 'cost', 'departureDate'];
 
   dataSource: MatTableDataSource<Event> = new MatTableDataSource();
   resultsLength = 0;
@@ -27,7 +26,7 @@ export class ReservationComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dialog: MatDialog, private eventService: EventService, private cdRef: ChangeDetectorRef, private snackBar: MatSnackBar) {
+  constructor(private dialog: MatDialog, private reservationService: ReservationService, private cdRef: ChangeDetectorRef) {
   }
 
   ngAfterViewInit(): void {
@@ -42,14 +41,15 @@ export class ReservationComponent implements AfterViewInit {
         switchMap(() => {
           this.isLoadingResults = true;
           this.cdRef.detectChanges();
-          return this.eventService.fetchPage(this.sort.active, this.sort.direction,
+          return this.reservationService.getAllBookingData(this.sort.active, this.sort.direction,
             this.paginator.pageIndex, this.paginator.pageSize);
         }),
         map((data: any) => {
           this.isLoadingResults = false;
           this.resultsLength = data.total;
           this.cdRef.detectChanges();
-          return data.eventDtos;
+          console.log(data);
+          return data.bookingInfoDtos;
         }),
         catchError((err) => {
           this.isLoadingResults = false;
@@ -63,4 +63,5 @@ export class ReservationComponent implements AfterViewInit {
       this.cdRef.detectChanges();
     });
   }
+
 }

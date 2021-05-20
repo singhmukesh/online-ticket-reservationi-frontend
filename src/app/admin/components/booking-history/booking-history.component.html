@@ -1,0 +1,52 @@
+<div class="event-view">
+  <h1 class="booking-title">Booking History</h1>
+  <mat-divider></mat-divider>
+  <div class="mat-elevation-z2 event-table">
+    <table #table [dataSource]="dataSource" mat-table matSort class="book-table">
+      <!-- ID Column -->
+
+      <ng-container matColumnDef="fromDestination">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>From Destination</mat-header-cell>
+        <mat-cell *matCellDef="let element" mat-cell> {{element?.eventDto.fromDestination}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="toDestination">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>To Destination</mat-header-cell>
+        <mat-cell *matCellDef="let element" mat-cell> {{element?.eventDto.toDestination}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="eventType">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Event Type</mat-header-cell>
+        <mat-cell *matCellDef="let element" mat-cell> {{element?.eventDto.eventType}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="cost">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Cost</mat-header-cell>
+        <mat-cell *matCellDef="let element" mat-cell> {{element?.reservationDto?.totalCost}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="departureDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Departure date</mat-header-cell>
+        <mat-cell *matCellDef="let element" mat-cell> {{element?.eventDto.departureDate | date:'short'}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let element" mat-cell>
+          <button mat-button color="primary" class="book-btn" routerLink="/user/book/{{element.id}}">Book</button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </table>
+    <ng-template [ngIf]="!isDataFound">
+      <div class="footer-row"><span class="footer-cell"><mat-icon>list_alt</mat-icon><h2>Record Not Found</h2></span>
+      </div>
+    </ng-template>
+    <mat-progress-bar *ngIf="isLoadingResults" mode="query"></mat-progress-bar>
+
+    <mat-paginator #paginator
+                   [pageIndex]="0"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 25, 100]">
+
+    </mat-paginator>
+  </div>
+</div>
+

@@ -9,6 +9,7 @@ import {SortDirection} from "@angular/material/sort";
 })
 export class PaymentService {
   private PAYMENT_URL = environment.backend_url + '/payment';
+  private USER_URL = environment.backend_url + '/user';
   dialogData: any;
   private httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -30,7 +31,7 @@ export class PaymentService {
   }
 
   getNavItems(): Observable<any> {
-    return this.http.get(this.PAYMENT_URL + '/navItems');
+    return this.http.get(this.USER_URL + '/nav-items');
   }
 
   deleteById(id): Observable<any> {

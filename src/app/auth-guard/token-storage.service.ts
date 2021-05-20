@@ -21,12 +21,22 @@ export class TokenStorageService {
   public saveToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
-    this.authService.getUserDetails().subscribe(res => {
-      console.log(res);
-    }, error => {
-      console.log(error);
-    })
+  }
+
+  public route(roles) {
+    if (roles.includes('ROLE_ADMIN')) {
+      this.routeToAdminDashboard();
+    } else {
+      this.routeToUserDashboard();
+    }
+  }
+
+  public routeToAdminDashboard() {
     this.router.navigate(['user', 'dashboard']);
+  }
+
+  public routeToUserDashboard() {
+    this.router.navigate(['user', 'booking']);
   }
 
   public getToken(): string {
