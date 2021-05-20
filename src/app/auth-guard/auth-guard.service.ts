@@ -14,6 +14,6 @@ export class AuthGuardService implements CanActivateChild {
     if (this.tokenStorageService.getToken() != null) {
       return true;
     }
-    return this.router.parseUrl('/admin/login');
+    return this.router.parseUrl('/login');
   }
 }

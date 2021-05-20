@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {TokenStorageService} from '../auth-guard/token-storage.service';
-import {NavItem} from './nav-item';
 import {NavService} from './nav.service';
+import {PaymentService} from "./components/payment/payment.service";
+import {NavItem} from "./nav-item";
 
 @Component({
   selector: 'app-dashboard',
@@ -19,42 +20,47 @@ export class AdminComponent implements OnInit, AfterViewInit {
     {
       displayName: 'Dashboard',
       iconName: 'dashboard',
-      route: 'admin/dashboard'
+      route: 'user/dashboard'
     },
     {
       displayName: 'Events',
       iconName: 'memory',
-      route: 'admin/events'
+      route: 'user/events'
     },
     {
       displayName: 'Ticket',
       iconName: 'architecture',
-      route: 'admin/ticket'
+      route: 'user/ticket'
     },
     {
       displayName: 'Payment',
       iconName: 'settings',
-      route: 'admin/payment'
+      route: 'user/payment'
     },
     {
       displayName: 'Reservation',
       iconName: 'attach_email',
-      route: 'admin/reservation'
+      route: 'user/reservation'
     },
     {
       displayName: 'Book',
       iconName: 'attach_email',
-      route: 'admin/booking'
+      route: 'user/booking'
     }
   ];
   fullName: string;
+  navItem: any;
 
-  constructor(protected tokenStorageService: TokenStorageService, private navService: NavService) {
+  constructor(protected tokenStorageService: TokenStorageService, private navService: NavService, private paymentService: PaymentService) {
 
   }
 
   ngOnInit(): void {
     // this.fullName = this.tokenStorageService.getUser().fullName;
+    this.paymentService.getNavItems().subscribe(res => {
+      this.navItem = res;
+
+    });
 
   }
 

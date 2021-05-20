@@ -26,7 +26,7 @@ export class TokenStorageService {
     }, error => {
       console.log(error);
     })
-    this.router.navigate(['admin', 'dashboard']);
+    this.router.navigate(['user', 'dashboard']);
   }
 
   public getToken(): string {
