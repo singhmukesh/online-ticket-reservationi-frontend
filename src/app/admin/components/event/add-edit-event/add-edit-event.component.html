@@ -1,0 +1,70 @@
+<div class="dialog">
+  <div class="dialog-title" mat-dialog-title>
+    <h2>{{data.title}}</h2>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="dialog-content" mat-dialog-content>
+    <form [formGroup]="eventForm">
+      <input formControlName="id" hidden matInput>
+      <mat-form-field class="field-full-width">
+        <mat-label>From Destination</mat-label>
+        <input formControlName="fromDestination" matInput placeholder="From Destination">
+        <mat-error *ngIf="fromDestinationFormControl.hasError('required')">
+          From Destination is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field-full-width">
+        <mat-label>To Destination</mat-label>
+        <input formControlName="toDestination" matInput placeholder="To Destination">
+        <mat-error *ngIf="toDestinationFormControl.hasError('required')">
+          To Destination is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field-full-width">
+        <mat-label>Select Event Type</mat-label>
+        <mat-select formControlName="eventType">
+          <mat-option *ngFor="let eventType of getKeys(eventTypes)" [value]="eventType">
+            {{eventTypes[eventType]}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field-full-width">
+        <mat-label>Unit Cost</mat-label>
+        <input formControlName="cost" matInput placeholder="Unit Cost of Ticket">
+        <mat-error *ngIf="unitCostFormControl.hasError('required')">
+          Ticket price is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <mat-label>Total Tickets</mat-label>
+        <input formControlName="totalNumberOfTickets" matInput placeholder="Total Tickets">
+        <mat-error *ngIf="totalTicketsFormControl.hasError('required')">
+          Total ticket is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field-full-width">
+        <mat-placeholder>Start DateTime</mat-placeholder>
+        <input matInput formControlName="departureDate" [matDatetimepicker]="dts" required autocomplete="false">
+        <mat-datetimepicker-toggle [for]="dts" matSuffix></mat-datetimepicker-toggle>
+        <mat-datetimepicker #dts type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+      </mat-form-field>
+      <br>
+    </form>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="dialog-action" mat-dialog-actions>
+    <button (click)="saveData()" *ngIf="!data.id" [disabled]="!eventForm.valid" color="primary" mat-raised-button>
+      Save
+    </button>
+    <button (click)="updateData()" *ngIf="data.id" [disabled]="!eventForm.valid" color="primary" mat-raised-button>
+      Update
+    </button>
+    <button (click)="saveDataAndExit()" *ngIf="!data.id" [disabled]="!eventForm.valid" color="warn"
+            mat-raised-button>Save and Exit
+    </button>
+  </div>
+</div>

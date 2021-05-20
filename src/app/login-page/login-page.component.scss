@@ -1,0 +1,48 @@
+.login-page{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px #2d2d2d;
+  margin-bottom: 40px;
+  span{
+    color: #000088;
+  }
+}
+.welcome-text{
+  margin-top: 20px;
+  color: #231f20;
+  font-size: 1.5rem;
+}
+mat-card {
+  min-height: 50vh;
+  width: 50vw;
+  background: #eeeeee;
+  text-align: center;
+}
+
+.login-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  font-size: 1.5em;
+}
+
+.login-field-full-width {
+  width: 100%;
+  margin-top: 10px;
+}
+.submit-button{
+  font-size: 1em;
+  padding: 5px 20px 5px 20px;
+}
+.forgot-password{
+  padding-top: 20px;
+  color: red;
+}

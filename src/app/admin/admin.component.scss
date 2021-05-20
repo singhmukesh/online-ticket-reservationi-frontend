@@ -1,0 +1,42 @@
+@import 'src/theme';
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+h1.app-name {
+  margin-left: 8px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-sidenav {
+  width: 260px;
+}
+
+.mat-sidenav-container {
+  background-color: white !important;
+  height: 100vh;
+}
+
+.sidenav-toolbar {
+  height: 64px;
+  background-color: mat-color($app-primary);
+  display: flex;
+  flex-direction: row;
+}
+
+
+.mat-nav-list {
+  padding: 0;
+  overflow-x: hidden;
+}
+

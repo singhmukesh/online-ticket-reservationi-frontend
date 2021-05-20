@@ -1,0 +1,47 @@
+<div class="login-page">
+  <h1 class="title">Flight
+    <span> Reservation</span>
+  </h1>
+  <mat-card>
+    <mat-card-subtitle>
+      <h5 class="welcome-text">Welcome Admin</h5>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="login-field-full-width">
+          <mat-label>
+            <mat-icon aria-hidden="false" aria-label="Email">email</mat-icon>
+            Email
+          </mat-label>
+          <input matInput formControlName="email" placeholder="Eg. abc@gmail.com">
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="login-field-full-width">
+          <mat-label>
+            <mat-icon aria-hidden="false" aria-label="Password">lock</mat-icon>
+            Password
+          </mat-label>
+          <input matInput formControlName="password" placeholder="***********" [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <br>
+        <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="!loginForm.valid">Sign
+          In
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

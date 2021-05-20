@@ -1,0 +1,86 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'src/theme';
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.dialog-title {
+  display: block;
+}
+
+.dialog-content {
+  width: 100%;
+  font-size: 1.25em;
+}
+
+.field-full-width {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.dialog-action {
+  display: flex;
+  flex-direction: row;
+  float: right;
+
+  button {
+    margin: 10px 0px 0px 10px;
+  }
+}
+
+.mat-radio-button {
+  margin: 10px 0px 0px 10px;
+}
+
+.sticky-top {
+  position: -webkit-sticky;
+  background: white;
+  position: sticky;
+  padding-top: 10px;
+  z-index: 2;
+  top: 0;
+}
+
+.add-button {
+  padding: 0 10px 10px 10px;
+  margin: 0 10px 10px 10px;
+}
+
+.event-view {
+  margin: 0 10px 0 10px;
+
+  .event-table {
+    width: 100%;
+
+    .mat-table {
+      width: inherit;
+    }
+  }
+}
+
+.footer-row {
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+  padding-top: 20px;
+
+  .footer-cell {
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+    text-justify: none;
+    color: mat-color($app-warn);
+
+    .mat-icon {
+      font-size: 40px;
+    }
+  }
+}
+

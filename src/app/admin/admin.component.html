@@ -1,0 +1,26 @@
+<div class="main-container">
+  <mat-toolbar class="toolbar" color="primary">
+    <button (click)="appDrawer.toggle()" mat-icon-button>
+      <mat-icon aria-hidden="false" aria-label="menu">menu</mat-icon>
+    </button>
+    <h1 class="app-name">Flight Reservation System</h1>
+    <span class="spacer"></span>
+
+
+    <button mat-icon-button (click)="logOut()">
+      <mat-icon aria-hidden="false" aria-label="exit">exit_to_app</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav #appDrawer closed mode="side">
+      <mat-nav-list>
+        <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

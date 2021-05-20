@@ -1,0 +1,65 @@
+<div class="dialog">
+  <div class="dialog-title" mat-dialog-title>
+    <h2>{{data.title}}</h2>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="dialog-content" mat-dialog-content>
+    <form [formGroup]="currencyForm" class="currency-form">
+      <input formControlName="id" hidden matInput>
+      <mat-form-field class="field-full-width">
+        <mat-label>Currency Name</mat-label>
+        <input formControlName="currencyName" matInput placeholder="Currency Name">
+        <mat-error *ngIf="currencyNameFormControl.hasError('required')">
+          Currency Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field-full-width">
+        <mat-label>Currency Display Name</mat-label>
+        <input formControlName="displayName" matInput placeholder="Currency Display Name">
+        <mat-error *ngIf="displayNameFormControl.hasError('required')">
+          Currency Display Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field-full-width">
+        <mat-label>Currency Code</mat-label>
+        <input formControlName="currencyCode" matInput placeholder="eg: USD AUD ">
+        <mat-error *ngIf="currencyCodeFormControl.hasError('required')">
+          Currency Code is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="currencyCodeFormControl.hasError('pattern')">
+          Currency Code is <strong>invalid</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field-full-width">
+        <mat-label>Currency Symbol</mat-label>
+        <input formControlName="currencySymbol" matInput placeholder="Currency Symbol">
+        <mat-error *ngIf="currencySymbolFormControl.hasError('required')">
+          Currency Symbol is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <div class="field-full-width">
+        <mat-radio-group aria-label="Currency Enable" formControlName="enable">
+          <mat-radio-button value="true">Enable</mat-radio-button>
+          <mat-radio-button value="false">Disabled</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <br>
+    </form>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="dialog-action" mat-dialog-actions>
+    <button (click)="saveData()" *ngIf="!data.id" [disabled]="!currencyForm.valid" color="primary" mat-raised-button>
+      Save
+    </button>
+    <button (click)="updateData()" *ngIf="data.id" [disabled]="!currencyForm.valid" color="primary" mat-raised-button>
+      Update
+    </button>
+    <button (click)="saveDataAndExit()" *ngIf="!data.id" [disabled]="!currencyForm.valid" color="warn"
+            mat-raised-button>Save and Exit
+    </button>
+  </div>
+</div>

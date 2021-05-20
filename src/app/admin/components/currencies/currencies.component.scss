@@ -1,0 +1,47 @@
+@import 'src/theme';
+
+.sticky-top {
+  position: -webkit-sticky;
+  background: white;
+  position: sticky;
+  padding-top: 10px;
+  z-index: 2;
+  top: 0;
+}
+
+.add-button {
+  padding: 0 10px 10px 10px;
+  margin: 0 10px 10px 10px;
+}
+
+.currencies-view {
+  margin: 0 10px 0 10px;
+
+  .currencies-table {
+    width: 100%;
+
+    .mat-table {
+      width: inherit;
+    }
+  }
+}
+
+.footer-row {
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+  padding-top: 20px;
+
+  .footer-cell {
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+    text-justify: none;
+    color: mat-color($app-warn);
+
+    .mat-icon {
+      font-size: 40px;
+    }
+  }
+}
+

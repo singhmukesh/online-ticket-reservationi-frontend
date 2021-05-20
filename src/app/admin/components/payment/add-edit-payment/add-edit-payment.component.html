@@ -1,0 +1,33 @@
+<div class="dialog">
+  <div class="dialog-title" mat-dialog-title>
+    <h2>{{data.name}}</h2>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="dialog-content" mat-dialog-content>
+    <form [formGroup]="paymentForm">
+      <input formControlName="id" hidden matInput>
+      <mat-form-field class="field-full-width">
+        <mat-label>Payment Method</mat-label>
+        <input formControlName="paymentMethod" matInput placeholder="Payment Method">
+        <mat-error *ngIf="paymentFormControl.hasError('required')">
+          Payment name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+    </form>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="dialog-action" mat-dialog-actions>
+    <button (click)="saveData()" *ngIf="!data.id" [disabled]="!paymentForm.valid" color="primary" mat-raised-button>
+      Save
+    </button>
+    <button (click)="updateData()" *ngIf="data.id" [disabled]="!paymentForm.valid" color="primary" mat-raised-button>
+      Update
+    </button>
+    <button (click)="saveDataAndExit()" *ngIf="!data.id" [disabled]="!paymentForm.valid" color="warn"
+            mat-raised-button>Save and Exit
+    </button>
+  </div>
+</div>
+
+
