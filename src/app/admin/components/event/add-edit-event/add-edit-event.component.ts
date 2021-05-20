@@ -82,8 +82,6 @@ export class AddEditEventComponent implements OnInit {
       "numberOfTickets": this.totalTicketsFormControl.value,
       "cost": this.unitCostFormControl.value
     }
-    console.log(this.eventForm.getRawValue());
-
     this.eventService.save(rawValue).subscribe(
       res => {
         this.snackBar.open(res.message);
@@ -112,7 +110,6 @@ export class AddEditEventComponent implements OnInit {
   }
 
   getKeys(eventTypes: any) {
-    console.log(eventTypes);
     return Object.keys(eventTypes);
   }
 }

@@ -1,0 +1,37 @@
+<mat-card class="payment-card mat-elevation-z8">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Cofirm Booking</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-label> From: {{data?.eventDto.fromDestination}}</mat-label>
+    <br>
+    <mat-label> To: {{data?.eventDto.toDestination}}</mat-label>
+    <br>
+    <mat-label> Departure Date and Time: <strong>{{data?.eventDto.departureDate  |date:'short'}}</strong></mat-label>
+    <br>
+    <mat-label> Name :{{data?.reservationDto.name }}</mat-label>
+    <br>
+    <mat-label> Phone Number:{{data?.reservationDto.phoneNumber }}</mat-label>
+    <br>
+    <mat-label> Email:{{data?.reservationDto.email}}</mat-label>
+    <br>
+    <mat-label> Total Tickets:{{data?.reservationDto.ticketQuantity }}</mat-label>
+    <br>
+    <mat-label> Total Cost:{{data?.reservationDto.totalCost }}</mat-label>
+    <br>
+    <form [formGroup]="paymentForm">
+      <mat-form-field class="field-full-width">
+        <mat-label>Select Event Type</mat-label>
+        <mat-select formControlName="paymentMethod">
+          <mat-option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod">
+            {{paymentMethod.paymentMethod}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="confirm()">Cofirm</button>
+  </mat-card-actions>
+</mat-card>

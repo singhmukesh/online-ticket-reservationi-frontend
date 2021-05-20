@@ -6,6 +6,8 @@ import {EventComponent} from "./components/event/event.component";
 import {PaymentComponent} from "./components/payment/payment.component";
 import {CurrenciesComponent} from "./components/currencies/currencies.component";
 import {ReservationComponent} from "./components/reservation/reservation.component";
+import {BookingComponent} from "./components/booking/booking.component";
+import {BookingPaymentComponent} from "./components/booking-payment/booking-payment.component";
 
 const routes: Routes = [
   {
@@ -16,6 +18,8 @@ const routes: Routes = [
       {path: 'payment', component: PaymentComponent},
       {path: 'reservation', component: EventComponent},
       {path: 'booking', component: ReservationComponent},
+      {path: 'book/:id', component: BookingComponent},
+      {path: 'pay/:id', component: BookingPaymentComponent},
     ]
   }
 ];

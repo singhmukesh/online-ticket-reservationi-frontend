@@ -38,6 +38,8 @@ import {AddEditCurrencyComponent} from "./components/currencies/add-edit-currenc
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatDatetimepickerModule} from "@mat-datetimepicker/core";
 import { ReservationComponent } from './components/reservation/reservation.component';
+import { BookingComponent } from './components/booking/booking.component';
+import { BookingPaymentComponent } from './components/booking-payment/booking-payment.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { ReservationComponent } from './components/reservation/reservation.compo
     AddEditPaymentComponent,
     CurrenciesComponent,
     AddEditCurrencyComponent,
-    ReservationComponent
+    ReservationComponent,
+    BookingComponent,
+    BookingPaymentComponent
   ],
   imports: [
     CommonModule,
