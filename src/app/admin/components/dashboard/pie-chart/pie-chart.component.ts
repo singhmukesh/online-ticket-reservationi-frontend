@@ -42,10 +42,8 @@ export class PieChartComponent implements OnInit {
   }
 
   private drawChart(): void {
-    // Compute the position of each group on the pie:
     const pie = d3.pie<any>().value((d: any) => Number(d.total));
 
-    // Build the pie chart
     this.svg
       .selectAll('pieces')
       .data(pie(this.data))
@@ -59,7 +57,6 @@ export class PieChartComponent implements OnInit {
       .attr("stroke", "#f1e6e6")
       .style("stroke-width", "1px");
 
-    // Add labels
     const labelLocation = d3.arc()
       .innerRadius(80)
       .outerRadius(this.radius);

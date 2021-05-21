@@ -1,0 +1,31 @@
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  flex-display: row;
+  flex-wrap: wrap;
+  width: 800px;
+  margin: 2rem auto 5rem;
+}
+
+.info-item {
+  padding-right: 10px;
+}
+
+.icon {
+  font-size: 150px;
+  color: #822a2a;
+}
+.icon-text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.icon-1{
+  color: #266780;
+}
+.icon-2{
+  color: #f39c12 ;
+}
+.icon-3{
+  color: #00a65a ;
+}

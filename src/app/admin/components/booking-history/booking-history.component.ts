@@ -18,7 +18,7 @@ export class BookingHistoryComponent implements AfterViewInit{
 
   eventType = EventType;
   event: Event[] = [];
-  displayedColumns: string[] = ['fromDestination', 'toDestination', 'eventType', 'cost','departureDate'];
+  displayedColumns: string[] = ['fromDestination', 'toDestination', 'eventType', 'cost','departureDate','status'];
 
   dataSource: MatTableDataSource<Event> = new MatTableDataSource();
   resultsLength = 0;

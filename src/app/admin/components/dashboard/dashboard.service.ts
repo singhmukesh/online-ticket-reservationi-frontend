@@ -24,4 +24,7 @@ export class DashboardService {
     return this.http.get(this.RESERVATION + '/monthly-revenue');
   }
 
+  getDashboardData() {
+    return this.http.get(this.RESERVATION + '/stat');
+  }
 }

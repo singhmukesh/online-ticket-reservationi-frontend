@@ -16,7 +16,7 @@ import {catchError, map, startWith, switchMap} from "rxjs/operators";
 export class OverallReservationComponent implements AfterViewInit {
   eventType = EventType;
   event: Event[] = [];
-  displayedColumns: string[] = ['name','email','phoneNumber','fromDestination', 'toDestination', 'eventType', 'cost', 'departureDate'];
+  displayedColumns: string[] = ['name','email','phoneNumber','fromDestination', 'toDestination', 'eventType', 'cost', 'departureDate','status'];
 
   dataSource: MatTableDataSource<Event> = new MatTableDataSource();
   resultsLength = 0;

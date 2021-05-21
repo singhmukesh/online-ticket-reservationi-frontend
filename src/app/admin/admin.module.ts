@@ -45,6 +45,7 @@ import { OverallReservationComponent } from './components/overall-reservation/ov
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import { BarGraphComponent } from './components/dashboard/bar-graph/bar-graph.component';
 import { PieChartComponent } from './components/dashboard/pie-chart/pie-chart.component';
+import { InfoComponent } from './components/dashboard/info/info.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { PieChartComponent } from './components/dashboard/pie-chart/pie-chart.co
     OverallReservationComponent,
     DashboardComponent,
     BarGraphComponent,
-    PieChartComponent
+    PieChartComponent,
+    InfoComponent
   ],
   imports: [
     CommonModule,

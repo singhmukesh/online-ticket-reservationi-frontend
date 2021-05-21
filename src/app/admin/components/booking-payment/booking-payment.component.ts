@@ -39,7 +39,6 @@ export class BookingPaymentComponent implements OnInit {
   confirm() {
     let rawValue = this.paymentForm.getRawValue();
     rawValue.reservationId = this.data.reservationDto.id;
-    debugger;
     this.bookingService.pay(rawValue).subscribe(
       res => {
         this.snackBar.open(res.message);

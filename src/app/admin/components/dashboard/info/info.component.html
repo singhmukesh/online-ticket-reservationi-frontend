@@ -1,0 +1,27 @@
+<div class="info-container">
+  <div class="info-item">
+    <mat-icon class="icon icon-1">book</mat-icon>
+    <hr>
+    <div class="icon-text">
+      <h2>{{data?.count}}</h2>
+      <h2>Total Bookings</h2>
+    </div>
+  </div>
+  <div class="info-item">
+    <mat-icon class="icon icon-2">event</mat-icon>
+    <hr>
+    <div class="icon-text">
+      <h2>{{data?.total}}</h2>
+      <h2>Total Events</h2>
+    </div>
+  </div>
+  <div class="info-item">
+    <mat-icon class="icon icon-3">account_balance</mat-icon>
+    <hr>
+    <div class="icon-text">
+      <h2>{{data?.revenue | currency:'USD'}}</h2>
+      <h2>Total Revenue</h2>
+    </div>
+  </div>
+</div>
+
