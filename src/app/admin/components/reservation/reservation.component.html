@@ -3,9 +3,8 @@
   <mat-divider></mat-divider>
   <div class="mat-elevation-z2 event-table">
     <table #table [dataSource]="dataSource" mat-table matSort class="book-table">
-      <!-- ID Column -->
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>SN.</mat-header-cell>
         <mat-cell *matCellDef="let element" mat-cell>{{element.id}}</mat-cell>
       </ng-container>
 

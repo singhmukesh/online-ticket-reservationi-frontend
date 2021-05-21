@@ -37,7 +37,7 @@ export class EventService {
             order: SortDirection = '',
             page: number = 0,
             perPage: number = 5): Observable<any> {
-    return this.http.get(this.EVENT_URL + '?' + this.createUrlQuery(field, order, page, perPage));
+    return this.http.get(this.EVENT_URL+'/all' + '?' + this.createUrlQuery(field, order, page, perPage));
   }
 
   createUrlQuery(field: string, order: string, page: number, perPage: number) {
