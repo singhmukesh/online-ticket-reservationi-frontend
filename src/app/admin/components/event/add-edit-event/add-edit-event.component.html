@@ -37,6 +37,9 @@
         <mat-error *ngIf="unitCostFormControl.hasError('required')">
           Ticket price is <strong>required</strong>
         </mat-error>
+        <mat-error *ngIf="totalTicketsFormControl.hasError('pattern')">
+          Please enter valid number
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <mat-label>Total Tickets</mat-label>
@@ -44,11 +47,14 @@
         <mat-error *ngIf="totalTicketsFormControl.hasError('required')">
           Total ticket is <strong>required</strong>
         </mat-error>
+        <mat-error *ngIf="totalTicketsFormControl.hasError('pattern')">
+          Please enter valid number
+        </mat-error>
       </mat-form-field>
       <br>
       <mat-form-field class="field-full-width">
         <mat-placeholder>Start DateTime</mat-placeholder>
-        <input matInput formControlName="departureDate" [matDatetimepicker]="dts" required autocomplete="false">
+        <input matInput formControlName="departureDate" [matDatetimepicker]="dts" required autocomplete="false" [min]="today">
         <mat-datetimepicker-toggle [for]="dts" matSuffix></mat-datetimepicker-toggle>
         <mat-datetimepicker #dts type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
       </mat-form-field>
@@ -59,9 +65,6 @@
   <div class="dialog-action" mat-dialog-actions>
     <button (click)="saveData()" *ngIf="!data.id" [disabled]="!eventForm.valid" color="primary" mat-raised-button>
       Save
-    </button>
-    <button (click)="updateData()" *ngIf="data.id" [disabled]="!eventForm.valid" color="primary" mat-raised-button>
-      Update
     </button>
     <button (click)="saveDataAndExit()" *ngIf="!data.id" [disabled]="!eventForm.valid" color="warn"
             mat-raised-button>Save and Exit

@@ -77,7 +77,7 @@ export class PaymentComponent implements AfterViewInit {
     this.snackBar.open('Are you Sure To Delete ' + payment, 'Yes', {verticalPosition: 'top'}).onAction().subscribe(() => {
       this.paymentService.deleteById(id).subscribe(
         res => {
-          this.snackBar.open(res.message + ' ' + payment);
+          this.snackBar.open(res + ' ' + payment);
           this.updateTable();
         },
         error => {

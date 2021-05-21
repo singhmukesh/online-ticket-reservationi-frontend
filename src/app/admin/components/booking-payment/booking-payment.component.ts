@@ -22,7 +22,7 @@ export class BookingPaymentComponent implements OnInit {
   ngOnInit(): void {
     this.getReservationInfo();
     this.getPaymentMethods();
-    this.paymentMethodFormControl = new FormControl('', [Validators.required]);
+    this.paymentMethodFormControl = new FormControl('Select Payment Method', [Validators.required]);
 
     this.paymentForm = new FormGroup({
       paymentMethod: this.paymentMethodFormControl,

@@ -20,7 +20,7 @@ export class DashboardService {
     return this.http.get(this.RESERVATION + '/monthly-booking');
   }
 
-  getMonthlyMonthlyRevenue(): Observable<any> {
+  getMonthlyRevenue(): Observable<any> {
     return this.http.get(this.RESERVATION + '/monthly-revenue');
   }
 

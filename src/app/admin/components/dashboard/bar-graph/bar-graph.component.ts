@@ -45,7 +45,7 @@ export class BarGraphComponent implements OnInit {
       .style("text-anchor", "end");
 
     const y = d3.scaleLinear()
-      .domain([0, 20])
+      .domain([0, 5000])
       .range([this.height, 0]);
 
     this.svg.append("g")
@@ -56,14 +56,14 @@ export class BarGraphComponent implements OnInit {
       .enter()
       .append("rect")
       .attr("x", d => x(d.Month))
-      .attr("y", d => y(d.count))
+      .attr("y", d => y(d.total))
       .attr("width", x.bandwidth())
-      .attr("height", (d) => this.height - y(d.count))
+      .attr("height", (d) => this.height - y(d.total))
       .attr("fill", "#d04a35");
   }
 
   private getBookingData() {
-    this.dashboardService.getMonthlyBookingInfo().subscribe(res => {
+    this.dashboardService.getMonthlyRevenue().subscribe(res => {
         this.data = res;
         this.createSvg();
         this.drawBars(this.data);

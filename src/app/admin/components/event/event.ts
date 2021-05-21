@@ -5,5 +5,6 @@ export class Event {
   eventType: string;
   totalNumberOfTickets: number;
   totalAvailableTickets: number;
-  departureDate: Date
+  departureDate: Date;
+  unitCost: number;
 }

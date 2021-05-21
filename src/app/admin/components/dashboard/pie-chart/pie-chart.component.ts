@@ -37,12 +37,12 @@ export class PieChartComponent implements OnInit {
 
   private createColors(): void {
     this.colors = d3.scaleOrdinal()
-      .domain(this.data.map(d => d.total.toString()))
+      .domain(this.data.map(d => d.count.toString()))
       .range(["#a15027", "#323ce5", "#9753e3", "#4b3ccb", "#5a6782"]);
   }
 
   private drawChart(): void {
-    const pie = d3.pie<any>().value((d: any) => Number(d.total));
+    const pie = d3.pie<any>().value((d: any) => Number(d.count));
 
     this.svg
       .selectAll('pieces')
@@ -73,7 +73,7 @@ export class PieChartComponent implements OnInit {
   }
 
   private getMonthlyRevenue() {
-    this.dashboardService.getMonthlyMonthlyRevenue().subscribe(res => {
+    this.dashboardService.getMonthlyBookingInfo().subscribe(res => {
         this.data = res;
         this.createSvg();
         this.createColors();
